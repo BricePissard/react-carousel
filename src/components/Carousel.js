@@ -67,15 +67,17 @@ export default class Carousel extends PureComponent {
 
     for (i=0; i<Constants.SLIDER_MAX; i++) {
       img = images[i]
-      _ar.push(
-        <CarouselItem
-          key={ i }
-          index={ i }
-          activeIndex={ activeIndex }
-          isVisible={ i >= activeIndex - mid && i < activeIndex  + mid }
-          url={ img && img.webformatURL || '' }
-        />
-      )
+      if (img) {
+        _ar.push(
+          <CarouselItem
+            key={ i }
+            index={ i }
+            activeIndex={ activeIndex }
+            isVisible={ i >= activeIndex - mid && i < activeIndex  + mid }
+            url={ img.webformatURL || '' }
+          />
+        )
+      }
     }
     return _ar
   }

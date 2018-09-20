@@ -37,7 +37,7 @@ describe('Testing list of images retrieved', () => {
 
 describe('Testing "Carousel" methods', () => {
   it('should click "_onPrev"', () => {
-    const wrapper = shallow(<Carousel images={ __test_images } />) //passing the "two" prop to test if it is properly passed to onClick handler
+    const wrapper = shallow(<Carousel images={ __test_images } />)
     const instance = wrapper.instance()
     jest.spyOn(instance, '_onPrev')
     wrapper.find('button.prev').simulate('click')
