@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.App {text-align:center;}
+	.App-header {background-color:#E7EBE4;height:auto;padding:20px;color:white;}
+	.App-title {font-size:4em;text-align:left;}
+	.App-content {font-size:large;}
+
+	/* -- Carousel -- */
+	.Carourel {position:relative;}
+		.Carourel ul {text-align:center;padding:10% 0;min-height:auto;}
+			.Carourel ul li {margin-right:20px;margin-left:auto;display:none;height:200px;width:200px;list-style-type:none;text-align:center;}
+			.Carourel ul li.visible {display:inline-block;}
+			.Carourel ul li.active {border:2px solid green;}
+				.Carourel ul li .imgC {background-color:#44C095;height:inherit;overflow:hidden;position:relative;}
+					.Carourel ul li .imgC img {width:fit-content;height:stretch;}
+					.Carourel ul li .imgC b {color:#fff;position:absolute;top:10%;left:10%;font-size:1.4em;}
+				.Carourel ul li span {display:block;text-align:left;font-size:1.3em;padding:15px 0;}
+		.Carourel .buttons {background-color:#E7EBE4;padding:10% 0;}
+			.Carourel button {background-color:#235B8B;border:none;padding:8px 20px;font-size:1em;cursor:pointer;}
+			.Carourel button.prev {border-radius:6px 0 0 6px;margin-right:10px;}
+			.Carourel button.next {border-radius:0 6px 6px 0;}
+				.Carourel button i {display:none;background-image:url('/img/arrow.svg');background-repeat:no-repeat;width:50px;height:59px;}
+				.Carourel button.prev i {transform:rotate(180deg);}
+				.Carourel button b {color:#fff;}
+
+
+@media all and (max-width:640px) {
+	.App-header {padding:20px 20px 50px;}
+	.App-title {font-size:2em;}
+		.Carourel ul li.visible {display:none;}
+		.Carourel ul li.active {display:inline-block;}
+			.Carourel ul li .imgC b {display:none;}
+		.Carourel .buttons {background-color:transparent;position:absolute;width:100%;top:0;}
+			.Carourel button {background-color:rgba(255,255,255,0.4);padding:20px 30px;}
+			.Carourel button.prev,
+			.Carourel button.next {border-radius:100%;position:absolute;top:90px;}
+			.Carourel button.prev {left:-4%;}
+			.Carourel button.next {right:-4%;}
+				.Carourel ul li {width:85%;height:200px;margin-right:auto;}
+					.Carourel button i {display:block;}
+					.Carourel button b {display:none;}
+}
