@@ -3,13 +3,8 @@
 /* jshint esversion: 6 */
 
 import React, { PureComponent } from 'react'
+import Constants from '../Constants'
 import CarouselItem from './CarouselItem'
-
-// -- size in pixel of the carousel slider items (200px + 20px of right margin).
-const SLIDER_SIZE:Number = 220;
-
-// -- maximum number of items in the carousel slider
-const SLIDER_MAX:Number = 6;
 
 export default class Carousel extends PureComponent {
 
@@ -31,10 +26,13 @@ export default class Carousel extends PureComponent {
     }
   }
 
+  /**
+   * Initialize screen resize listener at component mount.
+   */
   componentDidMount():void
   {
-    window.addEventListener("resize", this.updateDimensions.bind(this));
-    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this))
+    this.updateDimensions()
   }
 
   render():any
@@ -63,22 +61,19 @@ export default class Carousel extends PureComponent {
   _getImages():Array<Object>
   {
     const { images } = this.props
-    let _ar:Array<Object> = [], i:Number, img:Object
-    console.log(images)
     const { totalVisible, activeIndex } = this.state
     const mid:Number = totalVisible/2
+    let _ar:Array<Object> = [], i:Number, img:Object
 
-    for (i=0; i<SLIDER_MAX; i++) {
-      console.log(totalVisible, '', activeIndex);
+    for (i=0; i<Constants.SLIDER_MAX; i++) {
       img = images[i]
-      //console.log(img);
       _ar.push(
         <CarouselItem
           key={ i }
           index={ i }
           activeIndex={ activeIndex }
           isVisible={ i >= activeIndex - mid && i < activeIndex  + mid }
-          url={ img.webformatURL }
+          url={ img && img.webformatURL || '' }
         />
       )
     }
@@ -117,13 +112,13 @@ export default class Carousel extends PureComponent {
    */
   _onPrev(e:Object):void
   {
-    e.preventDefault();
-    let index = this.state.activeIndex;
+    e && e.preventDefault()
+    let index = this.state.activeIndex
     if (index < 1) {
-      index = SLIDER_MAX;
+      index = Constants.SLIDER_MAX
     }
     --index;
-    this.setState({ activeIndex: index });
+    this.setState({ activeIndex: index })
   }
 
   /**
@@ -134,13 +129,13 @@ export default class Carousel extends PureComponent {
    */
   _onNext(e:Object):void
   {
-    e.preventDefault();
-    let index = this.state.activeIndex;
-    ++index;
-    if (index >= SLIDER_MAX) {
-      index = 0;
+    e && e.preventDefault()
+    let index = this.state.activeIndex
+    ++index
+    if (index >= Constants.SLIDER_MAX) {
+      index = 0
     }
-    this.setState({ activeIndex: index });
+    this.setState({ activeIndex: index })
   }
 
   /**
@@ -150,7 +145,7 @@ export default class Carousel extends PureComponent {
    */
   _goTo(index:Number):void
   {
-    this.setState({ activeIndex: index });
+    this.setState({ activeIndex: index })
   }
 
   /**
@@ -159,11 +154,11 @@ export default class Carousel extends PureComponent {
    */
   updateDimensions():void
   {
-    const w:Number = window.innerWidth;
+    const w:Number = window.innerWidth
 
     this.setState({
       width: w,
-      totalVisible: Math.floor(w/SLIDER_SIZE)
+      totalVisible: Math.floor(w/Constants.SLIDER_SIZE)
     });
   }
 

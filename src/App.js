@@ -7,7 +7,7 @@ import getData from './data/getData'
 import Carousel from './components/Carousel'
 import './assets/App.css'
 
-class App extends Component {
+export default class App extends Component {
 
   constructor(props:Object, state:Object):void
   {
@@ -23,7 +23,7 @@ class App extends Component {
   componentDidMount():void
   {
     // -- query to search for specific images in Pixabay API.
-    const search_for:String = 'beautiful+landscape';
+    const search_for:String = 'beautiful+landscape'
 
     getData({query:search_for}).then(images => {
       //console.log(images);
@@ -44,6 +44,10 @@ class App extends Component {
 
   // -- VIEWS
 
+  /**
+   * Create page header
+   * @return {View}
+   */
   _getHeader():any
   {
     return (
@@ -53,6 +57,10 @@ class App extends Component {
     )
   }
 
+  /**
+   * Create page content with component Carousel.
+   * @return {View}
+   */
   _getContent():any
   {
     return (
@@ -63,5 +71,3 @@ class App extends Component {
   }
 
 }
-
-export default App;
